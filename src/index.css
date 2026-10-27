@@ -1,0 +1,228 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-500.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-600.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-700.css";
+@import "@fontsource/ibm-plex-sans-arabic/latin-400.css";
+@import "@fontsource/ibm-plex-sans-arabic/latin-600.css";
+@import "@fontsource/readex-pro/arabic-400.css";
+@import "@fontsource/readex-pro/arabic-500.css";
+@import "@fontsource/readex-pro/arabic-600.css";
+@import "@fontsource/readex-pro/arabic-700.css";
+@import "@fontsource/readex-pro/latin-400.css";
+@import "@fontsource/readex-pro/latin-600.css";
+@import "@fontsource/noto-kufi-arabic/arabic-500.css";
+@import "@fontsource/noto-kufi-arabic/arabic-600.css";
+@import "@fontsource/noto-kufi-arabic/arabic-700.css";
+@import "@fontsource/noto-sans-arabic/arabic-400.css";
+@import "@fontsource/noto-sans-arabic/arabic-500.css";
+@import "@fontsource/noto-sans-arabic/arabic-600.css";
+@import "@fontsource/noto-sans-arabic/arabic-700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────────
+   ألوان التصميم كمتغيرات (tokens). كل أسلوب يعيد تعريفها بكلاس
+   على <html>: theme-a / theme-b / theme-c
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --radius: 0.875rem;
+  --font-body: "Noto Sans Arabic", system-ui, sans-serif;
+  --font-head: "Noto Kufi Arabic", "Noto Sans Arabic", system-ui, sans-serif;
+
+  --background: #f7f3ec;
+  --foreground: #1f2a24;
+  --card: #ffffff;
+  --card-foreground: #1f2a24;
+  --popover: #ffffff;
+  --popover-foreground: #1f2a24;
+  --primary: #1e4d3a;
+  --primary-foreground: #ffffff;
+  --secondary: #ece5d8;
+  --secondary-foreground: #1f2a24;
+  --muted: #f0ebe1;
+  --muted-foreground: #5b635c;
+  --accent: #c2410c;
+  --accent-foreground: #ffffff;
+  --destructive: #b91c1c;
+  --border: #e4dccd;
+  --input: #d9cfbd;
+  --ring: #1e4d3a;
+  --success: #15803d;
+  --success-soft: #e3f3e7;
+  --warning: #b45309;
+  --warning-soft: #fdf0dc;
+  --danger-soft: #fbe5e2;
+  --sidebar: #1e4d3a;
+  --sidebar-foreground: #e9f1ec;
+  --sidebar-accent: #2a6650;
+  --shadow-card: 0 1px 2px rgb(31 42 36 / 0.04), 0 4px 14px rgb(31 42 36 / 0.06);
+
+  /* ألوان أنواع الحركات */
+  --mv-in: #15803d;
+  --mv-out: #c2410c;
+  --mv-transfer: #1d4ed8;
+  --mv-waste: #b91c1c;
+  --mv-return: #7c3aed;
+  --mv-opening: #0f766e;
+  --mv-adjust: #a16207;
+}
+
+/* أ — مطبخ دافئ (Soft UI Evolution) */
+.theme-a {
+  color-scheme: light;
+}
+
+/* ب — غرفة العمليات (Data-Dense Dark) */
+.theme-b {
+  color-scheme: dark;
+  --radius: 0.625rem;
+  --font-body: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-head: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --background: #0a0f1c;
+  --foreground: #e6ebf2;
+  --card: #111827;
+  --card-foreground: #e6ebf2;
+  --popover: #151d2e;
+  --popover-foreground: #e6ebf2;
+  --primary: #34d399;
+  --primary-foreground: #052e1f;
+  --secondary: #1b2436;
+  --secondary-foreground: #e6ebf2;
+  --muted: #161f30;
+  --muted-foreground: #94a3b8;
+  --accent: #fbbf24;
+  --accent-foreground: #241a00;
+  --destructive: #f87171;
+  --border: #233047;
+  --input: #2b3a55;
+  --ring: #34d399;
+  --success: #34d399;
+  --success-soft: rgb(52 211 153 / 0.14);
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 0.14);
+  --danger-soft: rgb(248 113 113 / 0.14);
+  --sidebar: #0d1424;
+  --sidebar-foreground: #cbd5e1;
+  --sidebar-accent: #172238;
+  --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.02);
+  --mv-in: #34d399;
+  --mv-out: #fb923c;
+  --mv-transfer: #60a5fa;
+  --mv-waste: #f87171;
+  --mv-return: #c084fc;
+  --mv-opening: #2dd4bf;
+  --mv-adjust: #facc15;
+}
+
+/* ج — بنتو مشرق (Bento Grid) */
+.theme-c {
+  color-scheme: light;
+  --radius: 1.5rem;
+  --font-body: "Readex Pro", system-ui, sans-serif;
+  --font-head: "Readex Pro", system-ui, sans-serif;
+  --background: #f3f3f7;
+  --foreground: #16142b;
+  --card: #ffffff;
+  --card-foreground: #16142b;
+  --popover: #ffffff;
+  --popover-foreground: #16142b;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #ebeaf7;
+  --secondary-foreground: #16142b;
+  --muted: #efeff5;
+  --muted-foreground: #5d5b73;
+  --accent: #f97316;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: #e4e3ee;
+  --input: #d7d5e6;
+  --ring: #4f46e5;
+  --success: #059669;
+  --success-soft: #ddf5ec;
+  --warning: #c2410c;
+  --warning-soft: #ffedd5;
+  --danger-soft: #fee2e2;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #16142b;
+  --sidebar-accent: #ebeaf7;
+  --shadow-card: 0 1px 2px rgb(22 20 43 / 0.04), 0 8px 24px rgb(22 20 43 / 0.06);
+  --mv-in: #059669;
+  --mv-out: #ea580c;
+  --mv-transfer: #4f46e5;
+  --mv-waste: #dc2626;
+  --mv-return: #9333ea;
+  --mv-opening: #0d9488;
+  --mv-adjust: #ca8a04;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-head);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-mv-in: var(--mv-in);
+  --color-mv-out: var(--mv-out);
+  --color-mv-transfer: var(--mv-transfer);
+  --color-mv-waste: var(--mv-waste);
+  --color-mv-return: var(--mv-return);
+  --color-mv-opening: var(--mv-opening);
+  --color-mv-adjust: var(--mv-adjust);
+  --shadow-card: var(--shadow-card);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-head);
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
