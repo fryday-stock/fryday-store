@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/readex-pro/arabic-400.css";
+@import "@fontsource/readex-pro/arabic-500.css";
+@import "@fontsource/readex-pro/arabic-600.css";
+@import "@fontsource/readex-pro/arabic-700.css";
+@import "@fontsource/readex-pro/latin-400.css";
+@import "@fontsource/readex-pro/latin-600.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ألوان التصميم كمتغيرات (tokens) — أسلوب «د» المستوحى من نموذج Borcelle */
+:root {
+  color-scheme: light;
+  --radius: 1.125rem;
+  --font-body: "Readex Pro", system-ui, sans-serif;
+  --font-head: "Readex Pro", system-ui, sans-serif;
+  --background: #ffffff;
+  --foreground: #1f2430;
+  --card: #ffffff;
+  --card-foreground: #1f2430;
+  --popover: #ffffff;
+  --popover-foreground: #1f2430;
+  --primary: #2f6bc9;
+  --primary-foreground: #ffffff;
+  --secondary: #eef5fd;
+  --secondary-foreground: #1f2430;
+  --muted: #f4f6f9;
+  --muted-foreground: #6b7280;
+  --accent: #0ba5e9;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: #e6e9ef;
+  --input: #d9dee7;
+  --ring: #0ba5e9;
+  --success: #059669;
+  --success-soft: #dff5ec;
+  --warning: #c2410c;
+  --warning-soft: #ffedd5;
+  --danger-soft: #fee2e2;
+  --sidebar: #262626;
+  --sidebar-foreground: #b8b8b8;
+  --sidebar-accent: #333333;
+  --brand-from: #0ba5e9;
+  --brand-to: #3a6cc6;
+  --shadow-card: 0 1px 2px rgb(31 36 48 / 0.03);
+  --mv-in: #059669;
+  --mv-out: #ea580c;
+  --mv-transfer: #2f6bc9;
+  --mv-waste: #dc2626;
+  --mv-return: #9333ea;
+  --mv-opening: #0d9488;
+  --mv-adjust: #ca8a04;
+}
+
+
+@theme inline {
+  --color-brand-from: var(--brand-from);
+  --color-brand-to: var(--brand-to);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-head);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-mv-in: var(--mv-in);
+  --color-mv-out: var(--mv-out);
+  --color-mv-transfer: var(--mv-transfer);
+  --color-mv-waste: var(--mv-waste);
+  --color-mv-return: var(--mv-return);
+  --color-mv-opening: var(--mv-opening);
+  --color-mv-adjust: var(--mv-adjust);
+  --shadow-card: var(--shadow-card);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-head);
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
