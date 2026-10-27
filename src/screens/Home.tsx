@@ -40,7 +40,7 @@ export function Home() {
           {ACTIONS.map(a => (
             <a key={a.k} href={'#' + a.to} className="group flex flex-col items-center gap-1.5 rounded-[18px] border bg-card p-2.5 text-center transition hover:border-accent hover:shadow-sm sm:flex-row sm:gap-3 sm:p-4 sm:text-start">
               <span className={cn('grid size-12 shrink-0 place-items-center rounded-xl text-white', GRAD)}><a.i className="size-6" /></span>
-              <span className="min-w-0"><b className="block text-[15px] sm:text-[17px]">{a.t}</b><span className="hidden truncate text-sm text-muted-foreground md:block">{a.d}</span></span>
+              <span className="min-w-0"><b className="block text-[15px] sm:text-[17px]">{a.t}</b><span className="hidden truncate text-sm text-muted-foreground xl:block">{a.d}</span></span>
             </a>
           ))}
         </div>
@@ -96,7 +96,7 @@ export function Home() {
           <Card>
             <CardTitle icon={MapPin} extra={<span className="text-sm text-muted-foreground">نسبة المواد الكافية</span>}>جاهزية أماكن الخزن</CardTitle>
             {locs.length ? (
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
                 {locs.map(l => {
                   const r = locReadiness(s, bal, l.id)
                   return (
