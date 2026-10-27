@@ -1,0 +1,77 @@
+rules_version = '2';
+// قواعد حماية «مخزن مطعم فرايدي»
+// تنلصق يدوياً بـ Firebase Console ← Firestore Database ← Rules ← Publish
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // فقط الأجهزة المفعّلة بحساب المطعم (Email/Password). أي جهاز ثاني ينرفض حتى لو عنده الرابط
+    function device() {
+      return request.auth != null && request.auth.token.email == 'device@fryday.iq';
+    }
+    // أي تحديث لازم يجي وياه سجل جديد بـ audit بنفس الـ batch
+    function audited() {
+      return request.resource.data.lastAuditId is string
+        && request.resource.data.lastAuditId != resource.data.get('lastAuditId', '')
+        && existsAfter(/databases/$(database)/documents/audit/$(request.resource.data.lastAuditId));
+    }
+    // الإضافة الجديدة ما تجي محذوفة أو بسجل تعديل مزوّر
+    function cleanCreate() {
+      return !('deleted' in request.resource.data) && !('lastAuditId' in request.resource.data);
+    }
+
+    // البطاقات: تنضاف وتتعدل. المسح بس للمادة/المكان اللي ما بيه حركات (الواجهة تتأكد)
+    match /items/{id}     { allow read, create, update, delete: if device(); }
+    match /locations/{id} { allow read, create, update, delete: if device(); }
+    // الموظفين: ما ينمسحون (إيقاف بدل الحذف)
+    match /staff/{id}     { allow read, create, update: if device(); allow delete: if false; }
+    // الموردين: ينضافون ويتعدلون، ما ينمسحون (إيقاف)
+    match /suppliers/{id} { allow read, create, update: if device(); allow delete: if false; }
+
+    // الحركات والفواتير والتسديدات: تنضاف، وما تنمسح نهائياً.
+    // أي تعديل أو حذف (deleted: true) لازم ينحفظ وياه سجل بـ audit وإلا القاعدة ترفضه.
+    match /moves/{id} {
+      allow read: if device();
+      allow create: if device() && cleanCreate();
+      allow update: if device() && audited();
+      allow delete: if false;
+    }
+    match /invoices/{id} {
+      allow read: if device();
+      allow create: if device() && cleanCreate();
+      allow update: if device() && audited();
+      allow delete: if false;
+    }
+    match /payments/{id} {
+      allow read: if device();
+      allow create: if device() && cleanCreate();
+      allow update: if device() && audited();
+      allow delete: if false;
+    }
+
+    // صور الفواتير: كل صورة وثيقة منفصلة (مضغوطة ~250KB). الحد الأعلى 700KB نص
+    // حذف الصورة = تعليمها محذوفة ويا سجل audit
+    match /invoiceImages/{id} {
+      allow read: if device();
+      allow create: if device() && cleanCreate()
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 700000
+        && request.resource.data.invoiceId is string;
+      allow update: if device() && audited()
+        && request.resource.data.data == resource.data.data;
+      allow delete: if false;
+    }
+
+    // سجل التعديلات والحذف: ينضاف فقط، ما يتعدل ولا ينمسح، ولازم بيه سبب
+    match /audit/{id} {
+      allow read: if device();
+      allow create: if device() && request.resource.data.why is string && request.resource.data.why.size() > 0;
+      allow update, delete: if false;
+    }
+
+    // الجرودات: تنضاف فقط
+    match /stocktakes/{id} {
+      allow read, create: if device();
+      allow update, delete: if false;
+    }
+  }
+}
