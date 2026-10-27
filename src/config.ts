@@ -12,12 +12,12 @@ export const CONFIG = {
   deviceEmail: 'device@fryday.iq',
 
   firebase: {
-    apiKey: '',
-    authDomain: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: '',
-    appId: '',
+    apiKey: 'AIzaSyAtl68701X8p9IGWb5HHOYUvuN1U2H1Ti0',
+    authDomain: 'fryday-store.firebaseapp.com',
+    projectId: 'fryday-store',
+    storageBucket: 'fryday-store.firebasestorage.app',
+    messagingSenderId: '1079606124304',
+    appId: '1:1079606124304:web:fcb7a56e91ffd471b80f95',
   },
 }
 
