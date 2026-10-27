@@ -158,7 +158,53 @@
   --mv-adjust: #ca8a04;
 }
 
+/* د — أزرق رقمي (مستوحى من نموذج Borcelle) */
+.theme-d {
+  color-scheme: light;
+  --radius: 1.125rem;
+  --font-body: "Readex Pro", system-ui, sans-serif;
+  --font-head: "Readex Pro", system-ui, sans-serif;
+  --background: #ffffff;
+  --foreground: #1f2430;
+  --card: #ffffff;
+  --card-foreground: #1f2430;
+  --popover: #ffffff;
+  --popover-foreground: #1f2430;
+  --primary: #2f6bc9;
+  --primary-foreground: #ffffff;
+  --secondary: #eef5fd;
+  --secondary-foreground: #1f2430;
+  --muted: #f4f6f9;
+  --muted-foreground: #6b7280;
+  --accent: #0ba5e9;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --border: #e6e9ef;
+  --input: #d9dee7;
+  --ring: #0ba5e9;
+  --success: #059669;
+  --success-soft: #dff5ec;
+  --warning: #c2410c;
+  --warning-soft: #ffedd5;
+  --danger-soft: #fee2e2;
+  --sidebar: #262626;
+  --sidebar-foreground: #b8b8b8;
+  --sidebar-accent: #333333;
+  --brand-from: #0ba5e9;
+  --brand-to: #3a6cc6;
+  --shadow-card: 0 1px 2px rgb(31 36 48 / 0.03);
+  --mv-in: #059669;
+  --mv-out: #ea580c;
+  --mv-transfer: #2f6bc9;
+  --mv-waste: #dc2626;
+  --mv-return: #9333ea;
+  --mv-opening: #0d9488;
+  --mv-adjust: #ca8a04;
+}
+
 @theme inline {
+  --color-brand-from: var(--brand-from);
+  --color-brand-to: var(--brand-to);
   --font-sans: var(--font-body);
   --font-heading: var(--font-head);
   --radius-sm: calc(var(--radius) - 4px);
